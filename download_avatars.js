@@ -2,7 +2,7 @@
 var request = require('request');
 var secrets = require('./secrets.js');
 
-console.log('Welcome to the GitHub Avatar Downloader!');
+//console.log('Welcome to the GitHub Avatar Downloader!');
 
 // Creat function to fetch the list of contributors
 function getRepoContributors(repoOwner, repoName, cb) {
@@ -15,15 +15,23 @@ function getRepoContributors(repoOwner, repoName, cb) {
     }
   };
 
+
     request(options, function(err, res, body) {
     cb(err, body);
   });
 
 }
 
+function printData(err, object) {
+  var avatarObject = JSON.parse(object);
+  for (var element of avatarObject) {
+    console.log(element.avatar_url)
+  }
+}
 
-  getRepoContributors("jquery", "jquery", function(err, result) {
-    console.log("Errors:", err);
-    console.log("Result:", result);
-  })
+getRepoContributors("jquery", "jquery", printData);
+  // getRepoContributors("jquery", "jquery", function(err, result) {
+  //   console.log("Errors:", err);
+  //   console.log("Result:", result);
+  // })
 
