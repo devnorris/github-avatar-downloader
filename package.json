@@ -19,5 +19,6 @@
   "homepage": "https://github.com/devnorris/github-avatar-downloader#readme",
   "dependencies": {
     "request": "^2.85.0"
-  }
+  },
+  "devDependencies": {}
 }
