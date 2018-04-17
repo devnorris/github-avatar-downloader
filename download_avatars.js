@@ -1,11 +1,18 @@
 // first require the request
+
+var owner = process.argv[2];
+var repo = process.argv[3];
 var request = require('request');
 var secrets = require('./secrets.js');
 var fs = require('fs');
 
-// Creat function to fetch the list of contributors
+// // Creat function to fetch the list of contributors
 function getRepoContributors(repoOwner, repoName, cb) {
-//
+  if (!owner || !repo) {
+    console.log("Wrong iput!")
+    return null;
+  }
+
   var options = {
     url:  "https://api.github.com/repos/" + repoOwner + "/" + repoName + "/contributors",
     headers: {
@@ -40,11 +47,8 @@ function printData(err, object) {
     return object.avatar_url;
  }
 
-
-//photo("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "avatars/kvirani.jpg")
-
-getRepoContributors("jquery", "jquery", photo);
-  // getRepoContributors("jquery", "jquery", function(err, result) {
+getRepoContributors(owner, repo, photo);
+// getRepoContributors("jquery", "jquery", function(err, result) {
 
 
 
